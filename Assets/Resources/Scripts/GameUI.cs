@@ -55,7 +55,7 @@ public class GameUI : MonoBehaviour {
     IEnumerator ShowAnimCard()
     {
         maskUI.SetActive(true);
-        Sprite tx = Resources.Load<Sprite>("Texture/f002");
+        Sprite tx = Resources.Load<Sprite>("Texture/f002"); 
         for (byte i = 0; i < num; i++)
         {
             GameObject item = Instantiate(cardItem, cardParent);
