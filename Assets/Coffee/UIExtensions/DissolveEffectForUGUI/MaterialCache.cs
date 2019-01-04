@@ -11,7 +11,7 @@ namespace Coffee.UIExtensions
 		public Texture texture;
 		public Material material;
 
-		[UnityEditor.InitializeOnLoadMethod]
+        //[UnityEditor.InitializeOnLoadMethod]
 		static void ClearCache()
 		{
 			materialCache.Clear();

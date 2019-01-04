@@ -102,7 +102,7 @@ public class GameUI : MonoBehaviour {
             yield return new WaitForSecondsRealtime(0.25f);
             cellData.SetActive(true);
             cellData.transform.DOLocalMoveY(showCardParent.localPosition.y + 100, 0.3f).OnComplete(() => { cellData.transform.SetParent(showCardParent); cellData.transform.localScale = Vector3.one * 1.5f; });
-            cellData.AddComponent<Button>().onClick.AddListener(() => {
+            cellData.GetComponent<Button>().onClick.AddListener(() => {
                 StartCoroutine(OnBtnClick(cellData,rNum));
             });
         }
@@ -112,6 +112,7 @@ public class GameUI : MonoBehaviour {
     IEnumerator OnBtnClick(GameObject cellData, int rNum)
     {
         maskUI.SetActive(true);
+        cellData.GetComponent<Button>().interactable = false;
         UIDissolve uidissolve = cellData.transform.Find("dimg").GetComponent<UIDissolve>();
         cishuNum -= 1;
         clickNum++;

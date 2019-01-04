@@ -29,9 +29,8 @@ namespace Coffee.UIExtensions
 		/// <summary>
 		/// Raises the validate event.
 		/// </summary>
-		protected override void OnValidate ()
+        protected virtual void OnValidate()
 		{
-			base.OnValidate ();
 #if UNITY_EDITOR
 			UnityEditor.EditorApplication.delayCall += () => UpdateMaterial(false);
 #endif
