@@ -6,7 +6,7 @@ using Coffee.UIExtensions;
 public class GameUI : MonoBehaviour {
 
     const byte num = 52;
-    public GameObject cardItem;
+    public GameObject cardItem,dataItem;
     public Transform cardParent,showCardParent;
     public Text jushu, fenshu,cishu;
     public GameObject endUI,maskUI;
@@ -55,14 +55,14 @@ public class GameUI : MonoBehaviour {
     IEnumerator ShowAnimCard()
     {
         maskUI.SetActive(true);
-        Sprite tx = Resources.Load<Sprite>("Texture/f002"); 
+        Sprite tx = Resources.Load<Sprite>("Texture/cardbeimian"); 
         for (byte i = 0; i < num; i++)
         {
             GameObject item = Instantiate(cardItem, cardParent);
             item.name = i.ToString();
             item.GetComponent<Image>().sprite = tx;
             item.transform.localRotation = Quaternion.identity;
-            item.transform.localScale = Vector3.one;
+            item.transform.localScale = Vector3.one/3.5f;
             yield return new WaitForSecondsRealtime(0.02f);
             item.transform.localPosition = new Vector3((i + 1)/2, -i/2);
             item.SetActive(true);
@@ -79,54 +79,63 @@ public class GameUI : MonoBehaviour {
             dataList[i] = tNum != rNum ? tNum : rNum;
         }
         randomHelp.GetRandomArray(dataList);
-        //oneCard.GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/"+rNum);//加载对应的图片
+        Image img = oneCard.GetComponent<Image>();
+        img.sprite = Resources.Load<Sprite>(DissolveRandom.RESPATH + rNum);//加载对应的图片
         oneCard.name = rNum.ToString();
         oneCard.localPosition = transV3;
         oneCard.localRotation = Quaternion.identity;
-        oneCard.localScale = Vector3.one;
+        oneCard.localScale = Vector3.one*1.5f;
+        img.SetNativeSize();
         yield return new WaitForSecondsRealtime(0.05f);
-        oneCard.DOLocalMoveY(-(transV3.y + 500), 0.5f);
+        oneCard.DOLocalMoveY(-(transV3.y + 380), 0.5f);
         yield return new WaitForSecondsRealtime(0.1f);
         for (int i = 0; i < dataList.Length; i++)
         {
             //GameObject cellData = Instantiate(cardItem,showCardParent);
-            GameObject cellData = Instantiate(cardItem,showCardParent.parent);
+            GameObject cellData = Instantiate(dataItem, showCardParent.parent);
             cellData.name = dataList[i].ToString();
             cellData.transform.localPosition = transV3;
             cellData.transform.localRotation = Quaternion.identity;
-            cellData.transform.localScale = Vector3.one;
+            cellData.transform.localScale = Vector3.one * 1.5f;
             cellData.transform.SetAsFirstSibling();
-            cellData.GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/" + "f002" /*dataList[i]*/);//加载对应的图片
+            cellData.GetComponent<Image>().sprite = Resources.Load<Sprite>(DissolveRandom.RESPATH+dataList[i]);//加载对应的图片
             yield return new WaitForSecondsRealtime(0.25f);
             cellData.SetActive(true);
-            cellData.transform.DOLocalMoveY(showCardParent.localPosition.y+100, 0.3f).OnComplete(() => { cellData.transform.SetParent(showCardParent); cellData.transform.localScale = Vector3.one; });
+            cellData.transform.DOLocalMoveY(showCardParent.localPosition.y + 100, 0.3f).OnComplete(() => { cellData.transform.SetParent(showCardParent); cellData.transform.localScale = Vector3.one * 1.5f; });
             cellData.AddComponent<Button>().onClick.AddListener(() => {
-                cishuNum -= 1;
-
-                clickNum++;
-                int tNum;
-                int.TryParse(cellData.name, out tNum);
-                Debug.LogError(tNum + " : " + rNum);
-                if (tNum == rNum && clickNum == 1)
-                {
-                    fenshuNum += 100;
-                    endUI.SetActive(true);
-                }
-                else if (tNum == rNum)
-                {
-                    fenshuNum += 50;
-                    endUI.SetActive(true);
-                }
-                SetTxtMsg();
-                if (cishuNum == 0)
-                {
-                    endUI.SetActive(true);
-                    return;
-                }
+                StartCoroutine(OnBtnClick(cellData,rNum));
             });
         }
         yield return new WaitForSecondsRealtime(0.9f);
         maskUI.SetActive(false);
+    }
+    IEnumerator OnBtnClick(GameObject cellData, int rNum)
+    {
+        maskUI.SetActive(true);
+        UIDissolve uidissolve = cellData.transform.Find("dimg").GetComponent<UIDissolve>();
+        cishuNum -= 1;
+        clickNum++;
+        int tNum;
+        int.TryParse(cellData.name, out tNum);
+        uidissolve.Play(() => {
+            maskUI.SetActive(false);
+            if (tNum == rNum && clickNum == 1)
+            {
+                fenshuNum += 100;
+                endUI.SetActive(true);
+            }
+            else if (tNum == rNum)
+            {
+                fenshuNum += 50;
+                endUI.SetActive(true);
+            }
+            SetTxtMsg();
+            if (cishuNum == 0)
+            {
+                endUI.SetActive(true);
+            }
+        });
+        yield return new WaitForSecondsRealtime(1);
     }
     int clickNum = 0;//用于判断是第几次选中正确的目标从而增加对应的积分 
 }

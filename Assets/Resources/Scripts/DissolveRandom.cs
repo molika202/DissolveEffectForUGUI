@@ -9,6 +9,7 @@ public class DissolveRandom
     public static string JUSHU="当前局数:";
     public static string FENSHU = "当前分数:";
     public static string CISHU = "剩余次数:";
+    public static string RESPATH="Texture/card/";
     static DissolveRandom instance=null;
 
     public static DissolveRandom INSTANCE

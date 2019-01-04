@@ -69,6 +69,7 @@ namespace Coffee.UIExtensions
 			}
 		}
 
+        Action CallBack;
 		/// <summary>
 		/// Edge softness.
 		/// </summary>
@@ -201,10 +202,11 @@ namespace Coffee.UIExtensions
 		/// <summary>
 		/// Play effect.
 		/// </summary>
-		public void Play()
+		public void Play(Action callback)
 		{
 			_time = 0;
 			m_Play = true;
+            CallBack = callback;
 		}
 
 
@@ -269,6 +271,7 @@ namespace Coffee.UIExtensions
 			if (m_Duration <= _time)
 			{
 				m_Play = false;
+                CallBack();
 				_time = 0;
 			}
 		}
