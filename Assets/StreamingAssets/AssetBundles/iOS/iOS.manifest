@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 3331574274
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: uimsg_prefab
+      Dependencies: {}
+    Info_1:
+      Name: assetobj_prefab
+      Dependencies: {}
+    Info_2:
+      Name: uitestunirx_prefab
+      Dependencies: {}
+    Info_3:
+      Name: uiconnect_prefab
+      Dependencies: {}
+    Info_4:
+      Name: data_json
+      Dependencies: {}

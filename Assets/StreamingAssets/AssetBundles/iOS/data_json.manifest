@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 510285855
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 4e9d902b78e77cba39faa2ea247c69cd
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/data.json
+Dependencies: []

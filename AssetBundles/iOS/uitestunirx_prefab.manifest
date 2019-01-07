@@ -1,0 +1,48 @@
+ManifestFileVersion: 0
+CRC: 258815266
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c77e33241b7ba6ebddc793209691e905
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ab770e2d4ffecfba29bf8de989d4bc5e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 114
+  Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 575553740, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 2109663825, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4211833ca4e7a4984b2d973425a62933, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dfdadf82209fa1e4baefbcd0c8c46c86, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/QFramework/Framework/3.UIKit/0.Example/TestUniRx/UITestUniRx.prefab
+Dependencies: []
